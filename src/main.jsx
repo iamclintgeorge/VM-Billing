@@ -11,6 +11,8 @@ import ForgotPassword from "./pages/User_Account/forgotPassword";
 import Error404 from "./pages/Error_Pages/error404";
 import Error403 from "./pages/Error_Pages/error403";
 import AdminLayout from "./layout/adminLayout";
+import Dashboard from "./pages/Dashboard/dashboard";
+
 import { AuthProvider } from "./services/useAuthCheck";
 import PrivateRoute from "./services/privateRoute";
 
@@ -29,6 +31,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/" element={<AdminLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route
             path="/upload_files"
