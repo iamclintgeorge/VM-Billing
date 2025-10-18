@@ -1,0 +1,1 @@
+VITE_admin_server = http://localhost:3663   
