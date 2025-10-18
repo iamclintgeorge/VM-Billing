@@ -29,7 +29,7 @@ function Login() {
         }
       );
       console.log("Login successful");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Login failed:", err);
       setError(

@@ -206,7 +206,7 @@ function DynamicSignup() {
       setRole("");
 
       // Navigate back or to users list
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Signup failed:", err);
       alert("Failed to create user. Please try again.");
