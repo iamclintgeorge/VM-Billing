@@ -124,22 +124,22 @@ const DynamicSideBar = () => {
     <div className="bg-[#f4f4f4] mt-16 min-h-screen max-h-auto w-64 text-[#0C2340] pb-10 sticky top-0 z-0 border-r-2 border-gray-400">
       <div className="flex flex-col pt-9 pl-8 space-y-9 text-base font-light font-inter">
         {/* Dashboard - Always visible */}
-        <Link to="/">
+        <Link to="/dashboard">
           <p className="flex justify-between pr-8">Dashboard</p>
         </Link>
-        <Link to="/">
+        <Link to="/order-vm">
           <p className="flex justify-between pr-8">Order VM</p>
         </Link>
-        <Link to="/">
+        <Link to="/my-vm">
           <p className="flex justify-between pr-8">My VMs</p>
         </Link>
-        <Link to="/">
+        <Link to="/billing">
           <p className="flex justify-between pr-8">Billing</p>
         </Link>
-        <Link to="/">
+        <Link to="/setting">
           <p className="flex justify-between pr-8">Setting</p>
         </Link>
-        <Link to="/">
+        <Link to="/support">
           <p className="flex justify-between pr-8">Support</p>
         </Link>
       </div>
