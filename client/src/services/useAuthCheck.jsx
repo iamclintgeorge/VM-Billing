@@ -14,8 +14,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // const response = await axios.get(
+        //   `${import.meta.env.VITE_admin_server}/api/check-auth`,
+        //   {
+        //     withCredentials: true,
+        //   }
+        // );
+
         const response = await axios.get(
-          `${import.meta.env.VITE_admin_server}/api/check-auth`,
+          `http://localhost:8080/api/check-auth`,
           {
             withCredentials: true,
           }
