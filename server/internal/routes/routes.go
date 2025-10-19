@@ -14,6 +14,6 @@ func RegisterRoutes(r *gin.Engine) {
 	// r.POST("/register", controllers.Register)
 	r.POST("/api/login", controllers.Login)
 
-	r.GET("/api/me", middleware.AuthMiddleware(), middleware.CheckAuth)
+	r.GET("/api/check-auth", middleware.AuthMiddleware(), middleware.CheckAuth)
 
 }
