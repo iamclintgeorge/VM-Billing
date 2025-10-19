@@ -1,66 +1,40 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
-	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
+	"github.com/iamclintgeorge/VM-Billing/internal/config"
+	"github.com/iamclintgeorge/VM-Billing/internal/models"
+	// "github.com/yourname/vm-billing/internal/db"
+	// "github.com/yourname/vm-billing/internal/middleware"
 )
 
 func main() {
-	// Initialize Gin router
+	db := config.Connect()
+	db.AutoMigrate(&models.User{})
+	fmt.Println("Database connected successfully:", db)
 	r := gin.Default()
+	// store := cookie.NewStore([]byte("super-secret-key"))
+	// r.Use(sessions.Sessions("session", store))
 
-	// Setup cookie-based session store
-	store := cookie.NewStore([]byte("super-secret-key"))
-	r.Use(sessions.Sessions("session", store))
+	// database := db.Connect()
+	// database.AutoMigrate(&db.User{})
 
-	// Simple login handler (mocked for now)
-	r.POST("/api/login", func(c *gin.Context) {
-		session := sessions.Default(c)
-		session.Set("user", "test-user")
-		session.Save()
-		c.JSON(200, gin.H{"message": "Logged in"})
-	})
+	// auth := api.AuthHandler{DB: database}
 
-	// Simple logout handler (mocked for now)
-	r.POST("/api/logout", func(c *gin.Context) {
-		session := sessions.Default(c)
-		session.Delete("user")
-		session.Save()
-		c.JSON(200, gin.H{"message": "Logged out"})
-	})
+	// r.POST("/api/login", auth.Login)
+	// r.POST("/api/logout", auth.Logout)
+	// r.GET("/api/me", auth.CurrentUser)
 
-	// Public route
-	r.GET("/api/me", func(c *gin.Context) {
-		session := sessions.Default(c)
-		user := session.Get("user")
-		if user == nil {
-			c.JSON(401, gin.H{"message": "Not authenticated"})
-		} else {
-			c.JSON(200, gin.H{"user": user})
-		}
-	})
+	// protected := r.Group("/api/protected")
+	// protected.Use(middleware.RequireLogin())
+	// protected.GET("/data", func(c *gin.Context) {
+	// 	c.JSON(200, gin.H{"message": "You are authenticated!"})
+	// })
 
-	// Protected route
-	protected := r.Group("/api/protected")
-	protected.Use(func(c *gin.Context) {
-		session := sessions.Default(c)
-		user := session.Get("user")
-		if user == nil {
-			c.JSON(401, gin.H{"message": "Unauthorized"})
-			c.Abort()
-			return
-		}
-		c.Next()
-	})
-
-	protected.GET("/data", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "You are authenticated!"})
-	})
-
-	// Start server
 	log.Println("Server running on http://localhost:8080")
 	r.Run(":8080")
 }
+
