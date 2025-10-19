@@ -67,12 +67,6 @@ const NavBar = () => {
             <Link to="/">
               <div className="pl-9 pt-4 text-[#0C2340] font-playfair text-2xl">
                 VM-Billing
-                {/* <p className="font-playfair text-[13px] font-[350] tracking-[0.5px] leading-6">
-                  FR. CONCEICAO RODRIGUES
-                </p>
-                <p className="font-playfair font-thin text-[9px] tracking-[2.7px]">
-                  INSTITUTE OF TECHNOLOGY
-                </p> */}
               </div>
             </Link>
             {/* {user.role == "superAdmin" && (

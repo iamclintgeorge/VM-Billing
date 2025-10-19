@@ -42,7 +42,7 @@ function Login() {
   };
 
   return (
-    <div className="h-screen bg-[#0C2340] relative overflow-hidden">
+    <div className="h-screen bg-[#f4f4f4] relative overflow-hidden">
       {/* Background decoration */}
       {/* <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-[#AE9142] opacity-10 blur-3xl animate-pulse"></div>
@@ -52,13 +52,8 @@ function Login() {
 
       {/* Institution branding - smaller */}
       <div className="absolute top-6 left-6 z-10">
-        <div className="text-white">
-          <p className="font-playfair text-[13px] font-[350] tracking-[0.5px] leading-6">
-            FR. CONCEICAO RODRIGUES
-          </p>
-          <p className="font-playfair font-thin text-[9px] tracking-[2.7px]">
-            INSTITUTE OF TECHNOLOGY
-          </p>
+        <div className="text-[#0C2340] font-playfair text-2xl">
+          <p>VM-Billing</p>
         </div>
       </div>
 
@@ -70,13 +65,13 @@ function Login() {
           <div className="relative z-10 w-full max-w-sm">
             <div className="bg-white rounded-xl border-[1px] border-gray-500 overflow-hidden">
               {/* Header - more compact */}
-              <div className="bg-[#0C2340] px-6 py-6 text-center relative overflow-hidden">
+              <div className="bg-white px-6 py-6 text-center relative overflow-hidden">
                 <div className="absolute inset-0"></div>
                 <div className="relative">
                   {/* Logo/Icon - smaller */}
-                  <div className="w-14 h-14 border-white border-[1.5px] rounded-full mx-auto mb-3 flex items-center justify-center shadow-lg">
+                  <div className="w-14 h-14 border-[#0C2340] border-[1.5px] rounded-full mx-auto mb-3 flex items-center justify-center shadow-lg">
                     <svg
-                      className="w-7 h-7 text-white"
+                      className="w-7 h-7 text-[#0C2340]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -89,7 +84,7 @@ function Login() {
                       />
                     </svg>
                   </div>
-                  <h2 className="text-lg font-inter font-semibold text-white mt-4">
+                  <h2 className="text-lg font-inter font-semibold text-[#0C2340] mt-4">
                     Sign in to your account
                   </h2>
                 </div>
