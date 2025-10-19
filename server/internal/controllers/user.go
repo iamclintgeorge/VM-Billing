@@ -11,7 +11,7 @@ import (
 )
 
 // Login handles POST /api/login with session cookies
-func Login(c *gin.Context) {
+func LoginController(c *gin.Context) {
 	var req struct {
 		EmailId  string `json:"emailId"`
 		Password string `json:"password"`
@@ -46,4 +46,31 @@ if err := config.DB.First(&user, "emailId = ?", req.EmailId).Error; err != nil {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "login successful"})
+}
+
+
+// LogoutController handles logging out the current user
+func LogoutController(c *gin.Context) {
+	session := sessions.Default(c)
+	userID := session.Get("user_id")
+
+	if userID == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "No user is logged in"})
+		return
+	}
+
+	// Destroy session
+	session.Clear()
+	if err := session.Save(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Could not log out",
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	// Clear cookie manually (optional, Gin sessions usually handles this)
+	c.SetCookie("session", "", -1, "/", "localhost", false, true)
+
+	c.JSON(http.StatusOK, gin.H{"message": "Logged out successfully"})
 }

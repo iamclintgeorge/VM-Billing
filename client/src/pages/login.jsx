@@ -21,20 +21,20 @@ function Login() {
     };
 
     try {
-      // const res = await axios.post(
-      //   `${import.meta.env.VITE_admin_server}/api/login`,
-      //   userData,
-      //   {
-      //     withCredentials: true,
-      //   }
-      // );
       const res = await axios.post(
-        `http://localhost:8080/api/login`,
+        `${import.meta.env.VITE_admin_server}/api/login`,
         userData,
         {
           withCredentials: true,
         }
       );
+      // const res = await axios.post(
+      //   `http://localhost:8080/api/login`,
+      //   userData,
+      //   {
+      //     withCredentials: true,
+      //   }
+      // );
       console.log("Login successful");
       navigate("/dashboard");
     } catch (err) {

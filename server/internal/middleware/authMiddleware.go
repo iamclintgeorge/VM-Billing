@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-contrib/sessions"
@@ -14,6 +15,7 @@ func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		session := sessions.Default(c)
 		userID := session.Get("user_id")
+log.Println("AuthMiddleware: session user_id =", userID)
 		if userID == nil {
 			c.JSON(http.StatusUnauthorized, gin.H{"message": "You are not authenticated"})
 			c.Abort()

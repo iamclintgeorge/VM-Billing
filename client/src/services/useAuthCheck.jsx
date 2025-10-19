@@ -14,23 +14,23 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // const response = await axios.get(
-        //   `${import.meta.env.VITE_admin_server}/api/check-auth`,
-        //   {
-        //     withCredentials: true,
-        //   }
-        // );
-
         const response = await axios.get(
-          `http://localhost:8080/api/check-auth`,
+          `${import.meta.env.VITE_admin_server}/api/check-auth`,
           {
             withCredentials: true,
           }
         );
+
+        // const response = await axios.get(
+        //   `http://localhost:8080/api/check-auth`,
+        //   {
+        //     withCredentials: true,
+        //   }
+        // );
         if (response.data.authenticated) {
           setIsAuthenticated(true);
           setUser(response.data.user);
-          console.log("setUser", user);
+          // console.log("setUser", user);
         } else {
           // Only navigate if we're not already on the login page
           if (window.location.pathname !== "/login") {

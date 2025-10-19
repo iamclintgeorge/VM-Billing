@@ -56,7 +56,7 @@ const NavBar = () => {
     return null;
   }
 
-  console.log(user.role);
+  // console.log(user.role);
 
   return (
     <>
