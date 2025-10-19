@@ -1,0 +1,49 @@
+package middleware
+
+import (
+	"net/http"
+
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-gonic/gin"
+	"github.com/iamclintgeorge/VM-Billing/internal/config"
+	"github.com/iamclintgeorge/VM-Billing/internal/models"
+)
+
+// AuthMiddleware ensures the user is logged in
+func AuthMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		session := sessions.Default(c)
+		userID := session.Get("user_id")
+		if userID == nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"message": "You are not authenticated"})
+			c.Abort()
+			return
+		}
+
+		// Optionally, load user from DB and attach to context
+		var user models.User
+		if err := config.DB.First(&user, userID).Error; err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"message": "You are not authenticated"})
+			c.Abort()
+			return
+		}
+
+		// Store user in context for handlers
+		c.Set("user", user)
+		c.Next()
+	}
+}
+
+// CheckAuth returns current authenticated user info
+func CheckAuth(c *gin.Context) {
+	user, exists := c.Get("user")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "You are not authenticated"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"authenticated": true,
+		"user":          user,
+	})
+}

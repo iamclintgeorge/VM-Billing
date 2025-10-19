@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/iamclintgeorge/VM-Billing/internal/controllers"
+	"github.com/iamclintgeorge/VM-Billing/internal/middleware"
 )
 
 func RegisterRoutes(r *gin.Engine) {
@@ -12,4 +13,7 @@ func RegisterRoutes(r *gin.Engine) {
 
 	// r.POST("/register", controllers.Register)
 	r.POST("/api/login", controllers.Login)
+
+	r.GET("/api/me", middleware.AuthMiddleware(), middleware.CheckAuth)
+
 }
