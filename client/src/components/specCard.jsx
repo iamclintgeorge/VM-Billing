@@ -1,11 +1,22 @@
 import React from "react";
+import { Cpu, Server, CheckCircle } from "lucide-react";
 
-const SpecCard = ({ title }) => {
+const SpecCard = ({ title, value, total, icon }) => {
+  const IconComponent = icon || Server; // default icon
+
   return (
-    <div className="flex flex-col items-center w-60 h-56 p-5 border-2 border-gray-300 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">
-      <div className="flex w-full h-full bg-gray-100 rounded-lg">
-        <p className="text-lg font-inter text-gray-800">{title}</p>
+    <div className="flex flex-col items-center w-60 h-56 p-5 border-2 border-gray-400 shadow-lg hover:shadow-xl transition-all duration-200 ">
+      <div className="flex items-center justify-center w-full h-20 bg-gray-100 rounded-lg mb-4">
+        <IconComponent className="w-10 h-10 text-yellow-700" />
       </div>
+      <h3 className="text-lg font-inter font-semibold text-gray-800 mb-2">
+        {title}
+      </h3>
+      {value !== undefined && total !== undefined && (
+        <p className="text-gray-600 font-inter">
+          {value} out of {total} total
+        </p>
+      )}
     </div>
   );
 };

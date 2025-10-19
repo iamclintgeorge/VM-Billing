@@ -1,5 +1,6 @@
 import React from "react";
 import SpecCard from "../../components/specCard";
+import { CheckCircle, Cpu, Server } from "lucide-react";
 
 const Dashboard = () => {
   return (
@@ -8,15 +9,20 @@ const Dashboard = () => {
         Personal Account
       </p>
       <div className="flex flex-wrap gap-y-10 gap-x-5 justify-evenly">
-        <SpecCard title="Running VMs" />
-        <SpecCard title="Total VMs" />
-        <SpecCard title="Balance" />
-        <SpecCard title="Last Payment" />
-        <SpecCard title="CPU Quota" />
-        <SpecCard title="RAM Quota" />
-        <SpecCard title="Disk Quota" />
-        <SpecCard title="VM Quota" />
-        <SpecCard title="Bonus Balance" />
+        <SpecCard title="Running VMs" value={3} total={10} icon={CheckCircle} />
+        <SpecCard title="Total VMs" value={3} total={10} icon={CheckCircle} />
+        <SpecCard title="Balance" value={3} total={10} icon={CheckCircle} />
+        <SpecCard
+          title="Last Payment"
+          value={3}
+          total={10}
+          icon={CheckCircle}
+        />
+        <SpecCard title="CPU Quota" value={8} total={16} icon={Cpu} />
+        <SpecCard title="RAM Quota" value={8} total={16} icon={Cpu} />
+        <SpecCard title="Disk Quota" value={8} total={16} icon={Cpu} />
+        <SpecCard title="VM Quota" value={8} total={16} icon={Cpu} />
+        <SpecCard title="Bonus Balance" value={8} total={16} icon={Cpu} />
       </div>
     </div>
   );
