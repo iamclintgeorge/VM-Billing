@@ -7,10 +7,12 @@ import (
 	"gorm.io/gorm"
 )
 
-func Connect() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("vm_billing.db"), &gorm.Config{})
+var DB *gorm.DB
+
+func Connect() {
+	var err error
+	DB, err = gorm.Open(sqlite.Open("vm_billing.db"), &gorm.Config{}) // use = not :=
 	if err != nil {
 		log.Fatal("Failed to connect to SQLite:", err)
 	}
-	return db
 }
