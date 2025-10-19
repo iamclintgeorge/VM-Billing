@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         if (response.data.authenticated) {
           setIsAuthenticated(true);
           setUser(response.data.user);
-          console.log("setUser", user);
+          // console.log("setUser", user);
         } else {
           // Only navigate if we're not already on the login page
           if (window.location.pathname !== "/login") {
