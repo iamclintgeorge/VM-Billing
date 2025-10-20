@@ -316,7 +316,7 @@ function Login() {
                     </div>
                   </div>
                 </div>
-                <p className="text-sm text-center mt-2 font-inter text-gray-600">
+                <p className="text-sm text-center pt-3 font-inter text-gray-600">
                   Don't have an account?{" "}
                   <a className="hover:text-[#0C2340]" href="/signup">
                     Sign up here
