@@ -11,6 +11,7 @@ import (
 	"github.com/iamclintgeorge/VM-Billing/internal/config"
 	"github.com/iamclintgeorge/VM-Billing/internal/models"
 	"github.com/iamclintgeorge/VM-Billing/internal/routes"
+    "golang.org/x/crypto/bcrypt"
 )
 
 func main() {
