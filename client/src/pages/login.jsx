@@ -316,16 +316,21 @@ function Login() {
                     </div>
                   </div>
                 </div>
+                <p className="text-sm text-center mt-2 font-inter text-gray-600">
+                  Don't have an account?{" "}
+                  <a className="hover:text-[#0C2340]" href="/signup">
+                    Sign up here
+                  </a>
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Fixed footer at bottom with minimal spacing */}
-        <div className="flex-shrink-0 py-3 text-center text-white/60 text-xs">
+        <div className="flex-shrink-0 py-3 text-center text-black/60 text-xs">
           <p>
-            © 2025 Fr. C. Rodrigues Institute of Technology. All rights
-            reserved.
+            © 2025 Clint George, Mustansir Habil Bhagat. All rights reserved.
           </p>
         </div>
       </div>

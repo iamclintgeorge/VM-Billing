@@ -48,7 +48,8 @@ export const AuthProvider = ({ children }) => {
             error.response.status === 401 &&
             window.location.pathname !== "/login"
           ) {
-            navigate("/login");
+            // navigate("/login");
+            navigate("/signup");
           }
         } else {
           setMessage("Failed to load message due to network issue.");
@@ -60,6 +61,58 @@ export const AuthProvider = ({ children }) => {
     };
     checkAuth();
   }, [navigate]);
+
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${import.meta.env.VITE_admin_server}/api/check-auth`,
+  //         { withCredentials: true }
+  //       );
+
+  //       if (response.data.authenticated) {
+  //         setIsAuthenticated(true);
+  //         setUser(response.data.user);
+  //         // Redirect logged-in users away from /login or /signup
+  //         if (
+  //           window.location.pathname === "/login" ||
+  //           window.location.pathname === "/signup"
+  //         ) {
+  //           navigate("/dashboard"); // or wherever you want logged-in users to go
+  //         }
+  //       } else {
+  //         // Allow access to /login and /signup
+  //         if (
+  //           window.location.pathname === "/login" ||
+  //           window.location.pathname === "/signup"
+  //         ) {
+  //           setIsAuthenticated(false);
+  //         } else {
+  //           navigate("/login");
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //       if (error.response) {
+  //         setMessage(
+  //           error.response.data.message || "You are not authenticated."
+  //         );
+  //         if (
+  //           error.response.status === 401 &&
+  //           window.location.pathname !== "/login"
+  //         ) {
+  //           navigate("/signup");
+  //         }
+  //       } else {
+  //         setMessage("Failed to load message due to network issue.");
+  //       }
+  //       setIsAuthenticated(false);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   checkAuth();
+  // }, [navigate]);
 
   if (loading) {
     return <div>Loading...</div>;
