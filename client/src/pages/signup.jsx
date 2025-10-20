@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -7,57 +7,8 @@ function DynamicSignup() {
   const [userName, setName] = useState("");
   const [password, setPassword] = useState("");
   const [emailId, setEmail] = useState("");
-  // const [role, setRole] = useState("");
-  // const [availableRoles, setAvailableRoles] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch available roles from backend
-  // useEffect(() => {
-  //   fetchAvailableRoles();
-  // }, []);
-
-  // const fetchAvailableRoles = async () => {
-  //   try {
-  //     // This should be an API call to get all available roles
-  //     const response = await axios.get(
-  //       `${import.meta.env.VITE_admin_server}/api/roles`,
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     );
-  //     setAvailableRoles(response.data.roles);
-  //   } catch (err) {
-  //     console.error("Failed to fetch roles:", err);
-  //     // Fallback to default roles if API fails
-  //     setAvailableRoles([
-  //       { id: "superAdmin", name: "superAdmin", displayName: "Super Admin" },
-  //       { id: "compHod", name: "compHod", displayName: "HOD (Computer)" },
-  //       { id: "mechHod", name: "mechHod", displayName: "HOD (Mechanical)" },
-  //       { id: "extcHod", name: "extcHod", displayName: "HOD (EXTC)" },
-  //       {
-  //         id: "electricalHod",
-  //         name: "electricalHod",
-  //         displayName: "HOD (Electrical)",
-  //       },
-  //       { id: "itHod", name: "itHod", displayName: "HOD (IT)" },
-  //       { id: "bshHod", name: "bshHod", displayName: "HOD (BSH)" },
-  //       {
-  //         id: "teach_staff",
-  //         name: "teach_staff",
-  //         displayName: "Teaching Staff",
-  //       },
-  //       {
-  //         id: "non_teach_staff",
-  //         name: "non_teach_staff",
-  //         displayName: "Non-Teaching Staff",
-  //       },
-  //       { id: "principal", name: "principal", displayName: "Principal" },
-  //       { id: "admin", name: "admin", displayName: "Admin" },
-  //     ]);
-  //   }
-  // };
-
-  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -78,20 +29,12 @@ function DynamicSignup() {
       );
       console.log("Signup Response:", res);
 
-      // Show success message
-      // alert(
-      //   `User created successfully with role: ${
-      //     availableRoles.find((r) => r.name === role)?.displayName || role
-      //   }`
-      // );
-
       // Reset form
       setName("");
       setPassword("");
       setEmail("");
-      // setRole("");
 
-      // Navigate back or to users list
+      // Navigate after successful signup
       navigate("/dashboard");
     } catch (err) {
       console.error("Signup failed:", err);
@@ -106,128 +49,148 @@ function DynamicSignup() {
   };
 
   return (
-    <div className="flex flex-row justify-center items-center min-h-screen bg-[#0C2340] p-4">
-      <div className="bg-white w-full max-w-md rounded-lg shadow-lg">
-        <div className="flex flex-col p-8">
-          <form onSubmit={handleSubmit}>
-            <h1 className="text-2xl font-semibold text-center mb-8 text-gray-800">
-              CREATE USER
-            </h1>
+    <div className="h-screen bg-[#f4f4f4] relative overflow-hidden">
+      {/* Branding - smaller */}
+      <div className="absolute top-6 left-6 z-10">
+        <div className="text-[#0C2340] font-playfair text-2xl">
+          <p>VM-Billing</p>
+        </div>
+      </div>
 
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Username
-                </label>
-                <input
-                  className="w-full bg-gray-100 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  type="text"
-                  name="name"
-                  placeholder="Enter username"
-                  value={userName}
-                  required
-                  onChange={(e) => setName(e.target.value)}
-                />
+      {/* Main content container */}
+      <div className="flex flex-col h-full">
+        {/* Form container */}
+        <div className="flex-1 flex items-center justify-center p-3">
+          <div className="relative z-10 w-full max-w-sm">
+            <div className="bg-white rounded-xl border-[1px] border-gray-500 overflow-hidden">
+              {/* Header */}
+              <div className="bg-white px-6 py-6 text-center relative overflow-hidden">
+                <h2 className="text-lg font-inter font-semibold text-[#0C2340] mt-4">
+                  Create New User
+                </h2>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Password
-                </label>
-                <input
-                  className="w-full bg-gray-100 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  type="password"
-                  name="password"
-                  placeholder="Enter password"
-                  value={password}
-                  required
-                  minLength="6"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email ID
-                </label>
-                <input
-                  className="w-full bg-gray-100 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  type="email"
-                  name="email"
-                  placeholder="Enter email address"
-                  value={emailId}
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="mt-8 space-y-4">
-              <button
-                className={`w-full py-2 px-4 rounded-md text-white font-medium ${
-                  validateForm() && !loading
-                    ? "bg-[#0C2340] hover:bg-[#0a1d35] focus:ring-2 focus:ring-blue-500"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
-                type="submit"
-                disabled={!validateForm() || loading}
-              >
-                {loading ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Creating User...
+              {/* Form */}
+              <div className="px-6 py-5">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Username field */}
+                  <div className="space-y-1">
+                    <label
+                      htmlFor="username"
+                      className="block text-xs font-semibold text-[#0C2340]"
+                    >
+                      Username
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={userName}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      disabled={loading}
+                      className="w-full pl-3 pr-3 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                      placeholder="Enter username"
+                    />
                   </div>
-                ) : (
-                  "Create User"
-                )}
-              </button>
 
-              <button
-                type="button"
-                onClick={() => navigate(-1)}
-                className="w-full py-2 px-4 border border-gray-300 rounded-md text-gray-700 font-medium hover:bg-gray-50 focus:ring-2 focus:ring-blue-500"
-              >
-                Cancel
-              </button>
-              <p className="text-sm text-center mt-2 font-inter text-gray-600">
-                Already have an account?{" "}
-                <a className="hover:text-[#0C2340]" href="/login">
-                  Login here
-                </a>
-              </p>
+                  {/* Password field */}
+                  <div className="space-y-1">
+                    <label
+                      htmlFor="password"
+                      className="block text-xs font-semibold text-[#0C2340]"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      disabled={loading}
+                      className="w-full pl-3 pr-3 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                      placeholder="Enter password"
+                    />
+                  </div>
+
+                  {/* Email field */}
+                  <div className="space-y-1">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs font-semibold text-[#0C2340]"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={emailId}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={loading}
+                      className="w-full pl-3 pr-3 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                      placeholder="Enter email address"
+                    />
+                  </div>
+
+                  {/* Submit button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={!validateForm() || loading}
+                      className="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-gradient-to-r from-[#AE9142] to-[#c4a652] hover:from-[#c4a652] hover:to-[#AE9142] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#AE9142] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                    >
+                      {loading ? (
+                        <div className="flex items-center">
+                          <svg
+                            className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                          Creating User...
+                        </div>
+                      ) : (
+                        "Create User"
+                      )}
+                    </button>
+                  </div>
+                </form>
+
+                {/* Footer link */}
+                <p className="text-sm text-center mt-2 font-inter text-gray-600">
+                  Already have an account?{" "}
+                  <a className="hover:text-[#0C2340]" href="/login">
+                    Login here
+                  </a>
+                </p>
+              </div>
             </div>
-          </form>
+          </div>
+        </div>
 
-          {/* Role Information */}
-          {/* {role && (
-            <div className="mt-6 p-4 bg-blue-50 rounded-md">
-              <h3 className="text-sm font-medium text-blue-800 mb-2">
-                Selected Role Information:
-              </h3>
-              <p className="text-sm text-blue-700">
-                <strong>Role:</strong>{" "}
-                {availableRoles.find((r) => r.name === role)?.displayName ||
-                  role}
-              </p>
-              <p className="text-sm text-blue-700">
-                <strong>Role ID:</strong> {role}
-              </p>
-            </div>
-          )} */}
-
-          {/* Instructions for SuperAdmin */}
-          {/* <div className="mt-4 p-4 bg-gray-50 rounded-md">
-            <h3 className="text-sm font-medium text-gray-800 mb-2">Note:</h3>
-            <p className="text-xs text-gray-600">
-              • User permissions are managed through the Role Management system
-            </p>
-            <p className="text-xs text-gray-600">
-              • Contact SuperAdmin to modify role permissions
-            </p>
-            <p className="text-xs text-gray-600">
-              • New roles can be created from the Role Management panel
-            </p>
-          </div> */}
+        {/* Footer */}
+        <div className="flex-shrink-0 py-3 text-center text-black/60 text-xs">
+          <p>
+            © 2025 Clint George, Mustansir Habil Bhagat. All rights reserved.
+          </p>
         </div>
       </div>
     </div>
