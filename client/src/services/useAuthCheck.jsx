@@ -16,24 +16,28 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_admin_server}/api/check-auth`,
-          {
-            withCredentials: true,
-          }
+          { withCredentials: true }
         );
 
-        // const response = await axios.get(
-        //   `http://localhost:8080/api/check-auth`,
-        //   {
-        //     withCredentials: true,
-        //   }
-        // );
         if (response.data.authenticated) {
           setIsAuthenticated(true);
           setUser(response.data.user);
-          // console.log("setUser", user);
+
+          // Redirect logged-in users away from /login or /signup
+          if (
+            window.location.pathname === "/login" ||
+            window.location.pathname === "/signup"
+          ) {
+            navigate("/dashboard");
+          }
         } else {
-          // Only navigate if we're not already on the login page
-          if (window.location.pathname !== "/login") {
+          // Allow access to /login and /signup
+          if (
+            window.location.pathname === "/login" ||
+            window.location.pathname === "/signup"
+          ) {
+            setIsAuthenticated(false);
+          } else {
             navigate("/login");
           }
         }
@@ -43,13 +47,14 @@ export const AuthProvider = ({ children }) => {
           setMessage(
             error.response.data.message || "You are not authenticated."
           );
-          // Only navigate if we're not already on the login page
+
+          // Only navigate if we're not already on login or signup pages
           if (
             error.response.status === 401 &&
-            window.location.pathname !== "/login"
+            window.location.pathname !== "/login" &&
+            window.location.pathname !== "/signup"
           ) {
-            // navigate("/login");
-            navigate("/signup");
+            navigate("/login");
           }
         } else {
           setMessage("Failed to load message due to network issue.");
@@ -59,70 +64,36 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
+
     checkAuth();
   }, [navigate]);
 
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `${import.meta.env.VITE_admin_server}/api/check-auth`,
-  //         { withCredentials: true }
-  //       );
-
-  //       if (response.data.authenticated) {
-  //         setIsAuthenticated(true);
-  //         setUser(response.data.user);
-  //         // Redirect logged-in users away from /login or /signup
-  //         if (
-  //           window.location.pathname === "/login" ||
-  //           window.location.pathname === "/signup"
-  //         ) {
-  //           navigate("/dashboard"); // or wherever you want logged-in users to go
-  //         }
-  //       } else {
-  //         // Allow access to /login and /signup
-  //         if (
-  //           window.location.pathname === "/login" ||
-  //           window.location.pathname === "/signup"
-  //         ) {
-  //           setIsAuthenticated(false);
-  //         } else {
-  //           navigate("/login");
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       if (error.response) {
-  //         setMessage(
-  //           error.response.data.message || "You are not authenticated."
-  //         );
-  //         if (
-  //           error.response.status === 401 &&
-  //           window.location.pathname !== "/login"
-  //         ) {
-  //           navigate("/signup");
-  //         }
-  //       } else {
-  //         setMessage("Failed to load message due to network issue.");
-  //       }
-  //       setIsAuthenticated(false);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   checkAuth();
-  // }, [navigate]);
-
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, loading, message }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        message,
+        loading,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
