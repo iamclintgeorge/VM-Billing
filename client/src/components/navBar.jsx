@@ -56,12 +56,12 @@ const NavBar = () => {
     return null;
   }
 
-  // console.log(user.role);
+  // console.log(user.role); #AE9142
 
   return (
     <>
       <div className="z-10 fixed w-full">
-        <div className="bg-[#AE9142] h-[3px] w-full top-0"></div>
+        <div className="bg-[#af0f0f] h-[3px] w-full top-0"></div>
         <div className="bg-[#f4f4f4] h-16 w-full top-[3px] bottom-0 border-b-[0.5px] border-[#888888]">
           <div className="flex flex-row justify-between">
             <Link to="/">

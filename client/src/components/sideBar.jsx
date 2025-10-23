@@ -122,25 +122,37 @@ const DynamicSideBar = () => {
 
   return (
     <div className="bg-[#f4f4f4] mt-16 min-h-screen max-h-auto w-64 text-[#0C2340] pb-10 sticky top-0 z-0 border-r-2 border-gray-400">
-      <div className="flex flex-col pt-9 pl-8 space-y-9 text-base font-light font-inter">
+      <div className="flex flex-col pt-9 pl-5 space-y-6 text-base font-light font-inter">
         {/* Dashboard - Always visible */}
         <Link to="/dashboard">
-          <p className="flex justify-between pr-8">Dashboard</p>
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="flex justify-between pb-3">Dashboard</p>
+          </div>
         </Link>
         <Link to="/order-vm">
-          <p className="flex justify-between pr-8">Order VM</p>
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="flex justify-between pb-3">Order VM</p>
+          </div>
         </Link>
-        <Link to="/my-vm">
-          <p className="flex justify-between pr-8">My VMs</p>
+        <Link to="/my-vms">
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="flex justify-between pb-3">My VMs</p>
+          </div>
         </Link>
         <Link to="/billing">
-          <p className="flex justify-between pr-8">Billing</p>
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="flex justify-between pb-3">Billing</p>
+          </div>
         </Link>
         <Link to="/setting">
-          <p className="flex justify-between pr-8">Setting</p>
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="flex justify-between pb-3">Setting</p>
+          </div>
         </Link>
         <Link to="/support">
-          <p className="flex justify-between pr-8">Support</p>
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="flex justify-between pb-3">Support</p>
+          </div>
         </Link>
       </div>
     </div>
