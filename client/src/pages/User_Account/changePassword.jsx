@@ -145,13 +145,13 @@ const ChangePassword = () => {
                         onChange={(e) => setOldPassword(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-5 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                        className="w-full px-5 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-[#af0f0f] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
                         placeholder="Enter your current password"
                       />
                       <button
                         type="button"
                         onClick={() => togglePasswordVisibility("old")}
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#AE9142] hover:text-[#0C2340] transition-colors"
+                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#af0f0f] hover:text-[#0C2340] transition-colors"
                       >
                         {showPassword.old ? (
                           <svg
@@ -209,13 +209,13 @@ const ChangePassword = () => {
                         onChange={(e) => setNewPassword(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-5 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                        className="w-full px-5 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-[#af0f0f] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
                         placeholder="Enter your new password"
                       />
                       <button
                         type="button"
                         onClick={() => togglePasswordVisibility("new")}
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#AE9142] hover:text-[#0C2340] transition-colors"
+                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#af0f0f] hover:text-[#0C2340] transition-colors"
                       >
                         {showPassword.new ? (
                           <svg
@@ -273,13 +273,13 @@ const ChangePassword = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full px-5 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                        className="w-full px-5 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-[#af0f0f] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
                         placeholder="Confirm your new password"
                       />
                       <button
                         type="button"
                         onClick={() => togglePasswordVisibility("confirm")}
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#AE9142] hover:text-[#0C2340] transition-colors"
+                        className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#af0f0f] hover:text-[#0C2340] transition-colors"
                       >
                         {showPassword.confirm ? (
                           <svg
@@ -325,7 +325,7 @@ const ChangePassword = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-gradient-to-r from-[#AE9142] to-[#c4a652] hover:from-[#c4a652] hover:to-[#AE9142] text-white font-semibold py-4 px-8 rounded-md transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none focus:ring-4 focus:ring-[#AE9142]/30 focus:outline-none text-lg font-inter"
+                      className="w-full bg-gradient-to-r from-[#af0f0f] to-[#c4a652] hover:from-[#c4a652] hover:to-[#af0f0f] text-white font-semibold py-4 px-8 rounded-md transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none focus:ring-4 focus:ring-[#af0f0f]/30 focus:outline-none text-lg font-inter"
                     >
                       {loading ? (
                         <div className="flex items-center justify-center">
@@ -374,7 +374,7 @@ const ChangePassword = () => {
 
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-[#AE9142] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#af0f0f] rounded-full mt-2 flex-shrink-0"></div>
                       <div>
                         <p className="text-[#0C2340] font-medium">
                           Use at least 8 characters
@@ -386,7 +386,7 @@ const ChangePassword = () => {
                     </div>
 
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-[#AE9142] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#af0f0f] rounded-full mt-2 flex-shrink-0"></div>
                       <div>
                         <p className="text-[#0C2340] font-medium">
                           Mix letters, numbers, and symbols
@@ -399,7 +399,7 @@ const ChangePassword = () => {
                     </div>
 
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-[#AE9142] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#af0f0f] rounded-full mt-2 flex-shrink-0"></div>
                       <div>
                         <p className="text-[#0C2340] font-medium">
                           Avoid common words
@@ -411,7 +411,7 @@ const ChangePassword = () => {
                     </div>
 
                     <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-[#AE9142] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#af0f0f] rounded-full mt-2 flex-shrink-0"></div>
                       <div>
                         <p className="text-[#0C2340] font-medium">
                           Keep it unique
@@ -426,7 +426,7 @@ const ChangePassword = () => {
                   {/* Additional security note */}
                   {/* <div className="mt-8 p-4 bg-[#0C2340]/5 rounded-lg border border-[#0C2340]/10">
                     <div className="flex items-start">
-                      <svg className="w-6 h-6 text-[#AE9142] mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-6 h-6 text-[#af0f0f] mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                       </svg>
                       <div>
