@@ -10,6 +10,7 @@ const NavBar = () => {
   const [facultyName, setFacultyName] = useState("Loading..."); // Initial state
   const { user } = useAuth();
   const navigate = useNavigate();
+  const logoText = "<VM-Billing />";
 
   useEffect(() => {
     if (!user?.id) {
@@ -66,7 +67,7 @@ const NavBar = () => {
           <div className="flex flex-row justify-between">
             <Link to="/">
               <div className="pl-9 pt-4 text-[#0C2340] font-playfair text-2xl">
-                VM-Billing
+                {logoText}
               </div>
             </Link>
             {/* {user.role == "superAdmin" && (
