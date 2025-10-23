@@ -18,7 +18,7 @@ import Error403 from "./pages/Error_Pages/error403";
 import AdminLayout from "./layout/adminLayout";
 import Dashboard from "./pages/Dashboard/dashboard";
 import { AuthProvider } from "./services/useAuthCheck";
-import PrivateRoute from "./services/privateRoute";
+// import PrivateRoute from "./services/privateRoute";
 import ProfilePage from "./pages/ProfilePage/profilePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,14 +42,14 @@ const App = () => {
             <Route path="/forgot-password" element={<ForgotPassword />} />
 
             {/* Protected routes */}
-            <Route element={<PrivateRoute />}>
+            {/* <Route element={<PrivateRoute />}> */}
               <Route element={<AdminLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/upload" element={<UploadFile />} />
                 <Route path="/vms" element={<VMList />} />
               </Route>
-            </Route>
+            {/* </Route> */}
 
             <Route path="/change-password" element={<ChangePassword />} />
 
