@@ -12,6 +12,7 @@ func RegisterRoutes(r *gin.Engine) {
 	api := r.Group("/api") 
 {
     UserRoutes(api)
+	VMRoutes(api)
 }
 
 	// r.POST("/register", controllers.Register)

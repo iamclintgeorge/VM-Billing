@@ -10,43 +10,47 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// Login handles POST /api/login with session cookies
 func LoginController(c *gin.Context) {
 	var req struct {
 		EmailId  string `json:"emailId"`
 		Password string `json:"password"`
 	}
 
-	// Bind JSON body
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "invalid request"})
 		return
 	}
 
-	// db := config.Connect()
+	var user models.User
+	if err := config.DB.First(&user, "emailId = ?", req.EmailId).Error; err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "invalid email or password"})
+		return
+	}
 
-	// Find user by email
-var user models.User
-if err := config.DB.First(&user, "emailId = ?", req.EmailId).Error; err != nil {
-    c.JSON(http.StatusUnauthorized, gin.H{"message": "invalid email or password"})
-    return
-}
-	// Compare password
 	if bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)) != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"message": "invalid password"})
 		return
 	}
 
-	// Create session
+	// CREATE AND SAVE SESSION
 	session := sessions.Default(c)
 	session.Set("user_id", user.ID)
 	if err := session.Save(); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "failed to save session"})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to save session"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "login successful"})
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"message": "Login successful",
+		"user": gin.H{
+			"id":      user.ID,
+			"name":    user.UserName,
+			"emailId": user.Email,
+		},
+	})
 }
+
 
 
 //Signup Controller
