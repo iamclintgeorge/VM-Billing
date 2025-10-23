@@ -52,9 +52,9 @@ function Login() {
     <div className="h-screen bg-[#f4f4f4] relative overflow-hidden">
       {/* Background decoration */}
       {/* <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-[#AE9142] opacity-10 blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-64 h-64 rounded-full bg-[#AE9142] opacity-5 blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/4 left-1/2 w-48 h-48 rounded-full bg-[#AE9142] opacity-5 blur-3xl animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-[#af0f0f] opacity-10 blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-64 h-64 rounded-full bg-[#af0f0f] opacity-5 blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/4 left-1/2 w-48 h-48 rounded-full bg-[#af0f0f] opacity-5 blur-3xl animate-pulse"></div>
       </div> */}
 
       {/* Institution branding - smaller */}
@@ -133,7 +133,7 @@ function Login() {
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg
-                          className="w-4 h-4 text-[#AE9142]"
+                          className="w-4 h-4 text-[#af0f0f]"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -154,7 +154,7 @@ function Login() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full pl-10 pr-3 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                        className="w-full pl-10 pr-3 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#af0f0f] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
                         placeholder="Enter your email address"
                       />
                     </div>
@@ -171,7 +171,7 @@ function Login() {
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg
-                          className="w-4 h-4 text-[#AE9142]"
+                          className="w-4 h-4 text-[#af0f0f]"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -192,13 +192,13 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         disabled={loading}
-                        className="w-full pl-10 pr-10 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#AE9142] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
+                        className="w-full pl-10 pr-10 py-3 text-sm border-2 border-gray-200 rounded-lg focus:border-[#af0f0f] focus:ring-0 transition-all duration-300 disabled:bg-gray-50 disabled:opacity-70 text-[#0C2340] placeholder-gray-400"
                         placeholder="Enter your password"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#AE9142] hover:text-[#0C2340] transition-colors"
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#af0f0f] hover:text-[#0C2340] transition-colors"
                       >
                         {showPassword ? (
                           <svg
@@ -244,7 +244,7 @@ function Login() {
                     <button
                       type="submit"
                       disabled={loading || !emailId || !password}
-                      className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-gradient-to-r from-[#AE9142] to-[#c4a652] hover:from-[#c4a652] hover:to-[#AE9142] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#AE9142] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:transform-none"
+                      className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-gradient-to-r from-[#ae4242] to-[#c45252] hover:from-[#c45252] hover:to-[#ae4242] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ae4242] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg disabled:transform-none"
                     >
                       {loading ? (
                         <div className="flex items-center">
@@ -298,7 +298,7 @@ function Login() {
                 <div className="mt-4 p-3 bg-[#0C2340]/5 rounded-lg border border-[#0C2340]/10">
                   <div className="flex items-start">
                     <svg
-                      className="w-4 h-4 text-[#AE9142] mt-0.5 mr-2 flex-shrink-0"
+                      className="w-4 h-4 text-[#af0f0f] mt-0.5 mr-2 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
