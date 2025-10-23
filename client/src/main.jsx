@@ -17,10 +17,8 @@ import Error404 from "./pages/Error_Pages/error404";
 import Error403 from "./pages/Error_Pages/error403";
 import AdminLayout from "./layout/adminLayout";
 import Dashboard from "./pages/Dashboard/dashboard";
-
 import { AuthProvider } from "./services/useAuthCheck";
 import PrivateRoute from "./services/privateRoute";
-
 import ProfilePage from "./pages/ProfilePage/profilePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,31 +26,43 @@ import "react-toastify/dist/ReactToastify.css";
 //Utility Components
 import UploadFile from "./pages/uploadFile/uploadFile";
 
+// VM Management - NEW
+import VMList from "./pages/VirtualMachines/vmList";
+import TestDashboard from "./pages/Dashboard/testDashboard";
+
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+      <Router>
+        <AuthProvider>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        <Route path="/" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route
-            path="/upload_files"
-            element={
-              <PrivateRoute permission="upload_files">
-                <UploadFile />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/change_password" element={<ChangePassword />} />
-          <Route path="/forgot_password" element={<ForgotPassword />} />
-        </Route>
-        <Route path="*" element={<Error404 />} />
-        <Route path="/error403" element={<Error403 />} />
-      </Routes>
+            {/* Protected routes */}
+            <Route element={<PrivateRoute />}>
+              <Route element={<AdminLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/upload" element={<UploadFile />} />
+                <Route path="/vms" element={<VMList />} />
+              </Route>
+            </Route>
+
+            <Route path="/change-password" element={<ChangePassword />} />
+
+            {/* Error pages */}
+            <Route path="/403" element={<Error403 />} />
+            <Route path="/404" element={<Error404 />} />
+
+            {/* Default redirects */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
       <ToastContainer />
     </>
   );
@@ -60,11 +70,5 @@ const App = () => {
 
 const rootElement = document.getElementById("root");
 if (rootElement) {
-  createRoot(rootElement).render(
-    <Router>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </Router>
-  );
+  createRoot(rootElement).render(<App />);
 }

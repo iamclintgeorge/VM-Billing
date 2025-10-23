@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
@@ -14,30 +15,39 @@ import (
 )
 
 func main() {
-	config.Connect() // initialize DB
-	config.DB.AutoMigrate(&models.User{})
-
+	config.Connect()
+	
+	config.DB.AutoMigrate(
+		&models.User{},
+		&models.UserVM{},
+		&models.ProxmoxConfig{},
+	)
+	
 	r := gin.Default()
-
+	
+	// CORS - Must be before routes
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:5173"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization", "Accept"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
 	}))
-
-	store := cookie.NewStore([]byte("super-secret-key"))
+	
+	// Session store
+	store := cookie.NewStore([]byte("super-secret-key-change-in-production"))
 	store.Options(sessions.Options{
 		Path:     "/",
-		MaxAge:   3600,
+		MaxAge:   86400, // 24 hours
 		HttpOnly: true,
+		Secure:   false, // true in production with HTTPS
 		SameSite: http.SameSiteLaxMode,
 	})
 	r.Use(sessions.Sessions("session", store))
-
+	
 	routes.RegisterRoutes(r)
-
+	
 	log.Println("Server running on http://localhost:8080")
 	r.Run(":8080")
 }
