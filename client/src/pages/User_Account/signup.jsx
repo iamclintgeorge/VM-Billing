@@ -1,4 +1,4 @@
-import { useState } from "react";
+import react, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,30 @@ function DynamicSignup() {
   const [password, setPassword] = useState("");
   const [emailId, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checkroot, setCheckroot] = useState(false);
+
+  useEffect(() => {
+    checkRoot();
+  }, []);
+
+  useEffect(() => {
+    if (checkroot) {
+      navigate("/login");
+    }
+  }, [checkroot, navigate]);
+
+  const checkRoot = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_admin_server}/api/check-root`,
+        { withCredentials: true }
+      );
+      setCheckroot(response.data.isRoot);
+      // console.log(response.data.isRoot);
+    } catch (err) {
+      console.log("Error while fetching Root Status:", err.message);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -316,12 +316,12 @@ function Login() {
                     </div>
                   </div>
                 </div>
-                <p className="text-sm text-center pt-3 font-inter text-gray-600">
+                {/* <p className="text-sm text-center pt-3 font-inter text-gray-600">
                   Don't have an account?{" "}
                   <Link to="/signup" className="hover:text-[#0C2340]">
                     Sign up here
                   </Link>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
