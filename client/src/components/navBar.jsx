@@ -10,7 +10,7 @@ const NavBar = () => {
   const [facultyName, setFacultyName] = useState("Loading..."); // Initial state
   const { user } = useAuth();
   const navigate = useNavigate();
-  const logoText = "<VM-Billing />";
+  const logoText = "VM-Billing";
 
   useEffect(() => {
     if (!user?.id) {

@@ -12,10 +12,10 @@ func main() {
 	
 	// Create Proxmox config
 	proxmoxConfig := models.ProxmoxConfig{
-		Host:     "192.168.0.242",
+		Host:     "192.168.122.100",
 		Port:     "8006",
-		NodeName: "pve",
-		APIToken: "root@pam!go-test=a3a685e7-ab32-4c97-a3bf-70c6aff33881", // Replace this
+		NodeName: "clint-george",
+		APIToken: "root@pam!go-test=48fef925-5379-43f5-b815-b3802346af35", // Replace this
 	}
 	
 	if err := config.DB.Create(&proxmoxConfig).Error; err != nil {
