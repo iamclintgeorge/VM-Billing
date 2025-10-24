@@ -42,15 +42,15 @@ const App = () => {
 
             {/* Protected routes */}
             {/* <Route element={<PrivateRoute />}> */}
-            <Route element={<AdminLayout />}>
+            <Route path="/" element={<AdminLayout />}>
+              <Route index element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/upload" element={<UploadFile />} />
               <Route path="/vms" element={<VMList />} />
+              <Route path="/change_password" element={<ChangePassword />} />
             </Route>
             {/* </Route> */}
-
-            <Route path="/change-password" element={<ChangePassword />} />
 
             {/* Error pages */}
             <Route path="/403" element={<Error403 />} />

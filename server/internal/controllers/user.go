@@ -161,11 +161,6 @@ func LoginController(c *gin.Context) {
 	}
 
 	// db := config.Connect()
-
-
-
-
-
 	// Find user by email
 var user models.User
 if err := config.DB.First(&user, "emailId = ?", req.EmailId).Error; err != nil {
@@ -187,14 +182,6 @@ if err := config.DB.First(&user, "emailId = ?", req.EmailId).Error; err != nil {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "login successful"})
-
-
-
-
-
-
-
-
 }
 
 

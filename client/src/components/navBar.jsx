@@ -7,32 +7,33 @@ import { toast } from "react-toastify";
 
 const NavBar = () => {
   const [isUserOpen, setIsUserOpen] = useState(false);
-  const [facultyName, setFacultyName] = useState("Loading..."); // Initial state
   const { user } = useAuth();
   const navigate = useNavigate();
   const logoText = "VM-Billing";
 
+  console.log("From Navbar", user);
+
   useEffect(() => {
-    if (!user?.id) {
+    if (!user?.ID) {
       setFacultyName("Guest"); // Fallback if no user
       return;
     }
 
-    const fetchFacultyName = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_admin_server}/api/profile/${user.id}`,
-          { withCredentials: true }
-        );
-        setFacultyName(response.data.name || "Unknown"); // Set name or fallback
-      } catch (error) {
-        console.error("Fetch faculty name error:", error);
-        setFacultyName("Undefined");
-      }
-    };
+    // const fetchFacultyName = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       `${import.meta.env.VITE_admin_server}/api/profile/${user.id}`,
+    //       { withCredentials: true }
+    //     );
+    //     setFacultyName(response.data.name || "Unknown"); // Set name or fallback
+    //   } catch (error) {
+    //     console.error("Fetch faculty name error:", error);
+    //     setFacultyName("Undefined");
+    //   }
+    // };
 
-    fetchFacultyName();
-  }, [user]); // Re-run if user changes
+    // fetchFacultyName();
+  }, []); // Re-run if user changes
 
   const handleUserClick = () => {
     setIsUserOpen((prevstate) => !prevstate);
@@ -65,7 +66,7 @@ const NavBar = () => {
         <div className="bg-[#af0f0f] h-[3px] w-full top-0"></div>
         <div className="bg-[#f4f4f4] h-16 w-full top-[3px] bottom-0 border-b-[0.5px] border-[#888888]">
           <div className="flex flex-row justify-between">
-            <Link to="/">
+            <Link to="/dashboard">
               <div className="pl-9 pt-4 text-[#0C2340] font-playfair text-2xl">
                 {logoText}
               </div>
@@ -76,18 +77,18 @@ const NavBar = () => {
               </div>
             )} */}
             <div className="text-[#0C2340] flex flex-row text-sm pr-10">
-              {/* <p
-                className="cursor-pointer mr-5 pt-[22px] font-light font-inter"
-                onClick={handleUserClick}
-              >
-                {facultyName || "Undefined"}
-              </p> */}
               <p
                 className="cursor-pointer mr-5 pt-[22px] font-light font-inter"
                 onClick={handleUserClick}
               >
-                {user.role === "superAdmin" ? "SuperAdmin" : facultyName}
+                {user.UserName || "Undefined"}
               </p>
+              {/* <p
+                className="cursor-pointer mr-5 pt-[22px] font-light font-inter"
+                onClick={handleUserClick}
+              >
+                {user.role === "superAdmin" ? "SuperAdmin" : facultyName}
+              </p> */}
               <div className="relative inline-block">
                 <button
                   className="text-xs pt-6 pb-5 pr-6"

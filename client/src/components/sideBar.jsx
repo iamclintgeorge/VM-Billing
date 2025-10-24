@@ -13,6 +13,8 @@ const DynamicSideBar = () => {
   const [permissionsData, setPermissionsData] = useState([]);
   const [userPermissions, setUserPermissions] = useState([]);
 
+  // console.log(user);
+
   if (!user) return null;
 
   return (
@@ -42,11 +44,6 @@ const DynamicSideBar = () => {
         <Link to="/setting">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
             <p className="pl-5 flex justify-between pb-3">Setting</p>
-          </div>
-        </Link>
-        <Link to="/support">
-          <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="pl-5 flex justify-between pb-3">Support</p>
           </div>
         </Link>
       </div>
