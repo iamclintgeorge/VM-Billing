@@ -4,7 +4,7 @@ import { CheckCircle, Cpu, Server } from "lucide-react";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [stats, setStats] = useState();
+  const [stats, setStats] = useState(null);
   const nodeName = "clint-george";
 
   useEffect(() => {
@@ -18,12 +18,15 @@ const Dashboard = () => {
         }/api/proxmox/fetchVMStats/${nodeName}`,
         { withCredentials: true }
       );
-      setStats(response);
-      console.log(response);
+      setStats(response.data.data);
+      console.log(response.data.data);
     } catch (err) {
       console.log("Error while fetching VM Stats:", err.message);
     }
   };
+
+  const runningVMs = stats?.filter((vm) => vm.status === "running").length;
+  const totalVMs = stats?.length;
   return (
     <>
       {!stats ? (
@@ -40,16 +43,11 @@ const Dashboard = () => {
           <div className="flex flex-wrap gap-y-10 gap-x-5 justify-evenly">
             <SpecCard
               title="Running VMs"
-              value={3}
-              total={10}
+              value={`${runningVMs} out of ${totalVMs}`}
               icon={CheckCircle}
             />
-            <SpecCard
-              title="Total VMs"
-              value={3}
-              total={10}
-              icon={CheckCircle}
-            />
+            <SpecCard title="Total VMs" value={totalVMs} icon={CheckCircle} />
+
             {/* <SpecCard title="CPU Quota" value={8} total={16} icon={Cpu} />
             <SpecCard title="RAM Quota" value={8} total={16} icon={Cpu} />
             <SpecCard title="Disk Quota" value={8} total={16} icon={Cpu} />
