@@ -1,7 +1,7 @@
 import React from "react";
 import { Cpu, Server, CheckCircle } from "lucide-react";
 
-const SpecCard = ({ title, value, total, icon }) => {
+const SpecCard = ({ title, value, icon }) => {
   const IconComponent = icon || Server; // default icon
 
   return (
@@ -12,10 +12,8 @@ const SpecCard = ({ title, value, total, icon }) => {
       <h3 className="text-lg font-inter font-semibold text-gray-800 mb-2">
         {title}
       </h3>
-      {value !== undefined && total !== undefined && (
-        <p className="text-gray-600 font-inter">
-          {value} out of {total} total
-        </p>
+      {value !== undefined && (
+        <p className="text-gray-600 font-inter">{value}</p>
       )}
     </div>
   );
