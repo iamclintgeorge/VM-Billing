@@ -42,7 +42,8 @@ const App = () => {
 
             {/* Protected routes */}
             {/* <Route element={<PrivateRoute />}> */}
-            <Route element={<AdminLayout />}>
+            <Route path="/" element={<AdminLayout />}>
+              <Route index element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/upload" element={<UploadFile />} />
