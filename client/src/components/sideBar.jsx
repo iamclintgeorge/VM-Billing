@@ -21,32 +21,32 @@ const DynamicSideBar = () => {
         {/* Dashboard - Always visible */}
         <Link to="/dashboard">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="flex justify-between pb-3">Dashboard</p>
+            <p className="pl-5 flex justify-between pb-3">Dashboard</p>
           </div>
         </Link>
         <Link to="/order-vm">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="flex justify-between pb-3">Order VM</p>
+            <p className="pl-5 flex justify-between pb-3">Order VM</p>
           </div>
         </Link>
         <Link to="/vms">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="flex justify-between pb-3">My VMs</p>
+            <p className="pl-5 flex justify-between pb-3">My VMs</p>
           </div>
         </Link>
         <Link to="/billing">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="flex justify-between pb-3">Billing</p>
+            <p className="pl-5 flex justify-between pb-3">Billing</p>
           </div>
         </Link>
         <Link to="/setting">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="flex justify-between pb-3">Setting</p>
+            <p className="pl-5 flex justify-between pb-3">Setting</p>
           </div>
         </Link>
         <Link to="/support">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
-            <p className="flex justify-between pb-3">Support</p>
+            <p className="pl-5 flex justify-between pb-3">Support</p>
           </div>
         </Link>
       </div>

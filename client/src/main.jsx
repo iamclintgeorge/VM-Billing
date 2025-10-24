@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 
 //Core Routes
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Login from "./pages/User_Account/login";
+import Signup from "./pages/User_Account/signup";
 import ChangePassword from "./pages/User_Account/changePassword";
 import ForgotPassword from "./pages/User_Account/forgotPassword";
 import Error404 from "./pages/Error_Pages/error404";
@@ -28,7 +28,6 @@ import UploadFile from "./pages/uploadFile/uploadFile";
 
 // VM Management - NEW
 import VMList from "./pages/VirtualMachines/vmList";
-import TestDashboard from "./pages/Dashboard/testDashboard";
 
 const App = () => {
   return (
@@ -43,12 +42,12 @@ const App = () => {
 
             {/* Protected routes */}
             {/* <Route element={<PrivateRoute />}> */}
-              <Route element={<AdminLayout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/upload" element={<UploadFile />} />
-                <Route path="/vms" element={<VMList />} />
-              </Route>
+            <Route element={<AdminLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/upload" element={<UploadFile />} />
+              <Route path="/vms" element={<VMList />} />
+            </Route>
             {/* </Route> */}
 
             <Route path="/change-password" element={<ChangePassword />} />

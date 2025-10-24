@@ -75,14 +75,16 @@ const VMList = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen w-[76vw]">
       <div className="mb-6">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-gray-900 font-playfair">
               My Virtual Machines
             </h1>
-            <p className="text-gray-600 mt-1">Manage and monitor your VMs</p>
+            <p className="text-gray-600 font-inter mt-1">
+              Manage and monitor your VMs
+            </p>
           </div>
           <button
             onClick={fetchVMs}

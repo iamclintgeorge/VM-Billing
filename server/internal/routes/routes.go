@@ -5,19 +5,14 @@ import (
 )
 
 func RegisterRoutes(r *gin.Engine) {
-	// r.GET("/", func(c *gin.Context) {
-	// 	c.JSON(200, gin.H{"message": "Welcome to VM Billing!"})
-	// })
-
 	api := r.Group("/api") 
-{
-    UserRoutes(api)
-	VMRoutes(api)
-}
+	{
+    		UserRoutes(api)
+		// VMRoutes(api)
+	}
 
-	// r.POST("/register", controllers.Register)
-	// r.POST("/api/login", controllers.LoginController)
-	// r.GET("/api/check-auth", middleware.AuthMiddleware(), middleware.CheckAuth)
-	// r.POST("/api/signout", controllers.LogoutController)
-
+	proxmox := r.Group("/api/proxmox") 
+	{
+		ProxmoxRoutes(proxmox)
+	}
 }
