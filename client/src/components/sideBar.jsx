@@ -41,6 +41,13 @@ const DynamicSideBar = () => {
             <p className="pl-5 flex justify-between pb-3">Billing</p>
           </div>
         </Link>
+        <Link to="/signup">
+          <div className="mr-8 hover:border-b-[1px] border-gray-500">
+            <p className="pl-5 flex justify-between pb-3">
+              Create User Account
+            </p>
+          </div>
+        </Link>
         <Link to="/setting">
           <div className="mr-8 hover:border-b-[1px] border-gray-500">
             <p className="pl-5 flex justify-between pb-3">Setting</p>

@@ -145,7 +145,29 @@ import (
 	"github.com/iamclintgeorge/VM-Billing/internal/config"
 	"github.com/iamclintgeorge/VM-Billing/internal/models"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
+
+func CheckRoot(c *gin.Context) {
+	// Assuming you have access to the database through the GORM DB instance
+	var user models.User
+
+	// Query the database to find if any user has the 'root' role
+	if err := config.DB.Where("role = ?", "root").First(&user).Error; err != nil {
+		// If no user with the role 'root' exists, send false
+		if err == gorm.ErrRecordNotFound {
+			c.JSON(http.StatusOK, gin.H{"isRoot": false})
+		} else {
+			// Handle other errors (e.g., database connection issues)
+			c.JSON(http.StatusInternalServerError, gin.H{"message": "Error querying database"})
+		}
+		return
+	}
+
+	// If the query is successful, a user with the role 'root' exists
+	c.JSON(http.StatusOK, gin.H{"isRoot": true})
+}
+
 
 // Login handles POST /api/login with session cookies
 func LoginController(c *gin.Context) {

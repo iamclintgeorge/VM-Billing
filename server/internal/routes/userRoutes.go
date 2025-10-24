@@ -11,8 +11,9 @@ func UserRoutes(rg *gin.RouterGroup) {
 //     rg.POST("/logout", controllers.LogoutController)
 //     rg.GET("/check-auth", controllers.CheckAuthController)
 
-    rg.POST("/login", controllers.LoginController)
-    rg.POST("/signup", controllers.SignupController)
+	rg.GET("/check-root", controllers.CheckRoot)
+     rg.POST("/login", controllers.LoginController)
+     rg.POST("/signup", controllers.SignupController)
 	rg.GET("/check-auth", middleware.AuthMiddleware(), middleware.CheckAuth)
 	rg.POST("/signout", controllers.LogoutController)
 }
