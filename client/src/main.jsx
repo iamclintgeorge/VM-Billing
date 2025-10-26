@@ -28,6 +28,7 @@ import UploadFile from "./pages/uploadFile/uploadFile";
 
 // VM Management - NEW
 import VMList from "./pages/VirtualMachines/vmList";
+import Billing from "./pages/Billing/billing";
 
 const App = () => {
   return (
@@ -48,6 +49,9 @@ const App = () => {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/upload" element={<UploadFile />} />
               <Route path="/vms" element={<VMList />} />
+              {/* <Route path="/order-vm" element={<VMList />} /> */}
+              <Route path="/billing" element={<Billing />} />
+              {/* <Route path="/setting" element={<Dashboard />} /> */}
               <Route path="/change_password" element={<ChangePassword />} />
             </Route>
             {/* </Route> */}
