@@ -16,7 +16,7 @@ import axios from "axios";
 const VMList = () => {
   const [vms, setVMs] = useState([]);
   const [stats, setStats] = useState(null);
-  const nodeName = "clint-george";
+  const nodeName = "pve";
   // const [loading, setLoading] = useState(true);
   // const [actionLoading, setActionLoading] = useState({});
 
